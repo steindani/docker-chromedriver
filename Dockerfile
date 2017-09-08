@@ -1,5 +1,5 @@
-FROM debian:jessie
-MAINTAINER Rob Cherry
+FROM debian:latest
+MAINTAINER Daniel Stein
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
@@ -40,7 +40,7 @@ RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RE
 RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get -yqq update && \
-    apt-get -yqq install google-chrome-stable && \
+    apt-get -yqq install google-chrome-beta && \
     rm -rf /var/lib/apt/lists/*
 
 # Configure Supervisor
@@ -49,7 +49,7 @@ ADD ./etc/supervisor /etc/supervisor
 
 # Default configuration
 ENV DISPLAY :20.0
-ENV SCREEN_GEOMETRY "1440x900x24"
+ENV SCREEN_GEOMETRY "1920x1080x24"
 ENV CHROMEDRIVER_PORT 4444
 ENV CHROMEDRIVER_WHITELISTED_IPS "127.0.0.1"
 ENV CHROMEDRIVER_URL_BASE ''
