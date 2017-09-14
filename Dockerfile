@@ -1,5 +1,6 @@
 FROM debian:latest
 MAINTAINER Daniel Stein
+# based on RobCherry/docker-chromedriver
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
@@ -17,7 +18,7 @@ RUN useradd automation --shell /bin/bash --create-home
 # Install fonts
 # Install Python
 RUN apt-get -yqq update && \
-    apt-get -yqq install curl unzip && \
+    apt-get -yqq install curl unzip gnupg && \
     apt-get -yqq install xvfb tinywm && \
     apt-get -yqq install fonts-ipafont-gothic xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic && \
     apt-get -yqq install python && \
