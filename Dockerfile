@@ -29,7 +29,7 @@ RUN curl -sS -o - https://bootstrap.pypa.io/ez_setup.py | python && \
     easy_install -q supervisor
 
 # Install Chrome WebDriver
-RUN CHROMEDRIVER_VERSION="2.39" && \
+RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
     mkdir -p /opt/chromedriver-$CHROMEDRIVER_VERSION && \
     curl -sS -o /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
     unzip -qq /tmp/chromedriver_linux64.zip -d /opt/chromedriver-$CHROMEDRIVER_VERSION && \
